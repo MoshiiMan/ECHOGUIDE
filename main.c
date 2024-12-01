@@ -17,10 +17,10 @@
 #include "usart.h"
 #include "peripherals.h"
 
-//-------------------Brukerdefinerte parametere-------------------
-#define SOUND_SPEED 0.0343 //Lydfarten i romtemperatur gitt i cm/us
+//-------------------Userdefined parameters-------------------
+#define SOUND_SPEED 0.0343 //The speed of sound in cm/us
 #define TRIG_PIN PIN0_bm   // Define trigger pin
-#define ECHO_PIN PIN1_bm // Define echo pin
+#define ECHO_PIN PIN1_bm   // Define echo pin
 //-------------------------------------------------------------
 
 // Initialize ultrasonic sensor pins
@@ -50,7 +50,7 @@ uint32_t measure_pulse_width() {
 
     // Measure duration of high pulse on ECHO_PIN
     while (PORTB.IN & ECHO_PIN) {
-        _delay_us(1);          // Wait 1µs
+        _delay_us(1);          // Wait 1Âµs
         pulse_width++;         // Increment counter
     }
     return pulse_width;
@@ -58,7 +58,7 @@ uint32_t measure_pulse_width() {
 
 // Calculate distance in cm based on pulse width
 uint16_t calculate_distance(uint32_t pulse_width) {
-    // Speed of sound is ~343 m/s or 0.0343 cm/µs, divide by 2 for round trip
+    // Speed of sound is ~343 m/s or 0.0343 cm/Âµs, divide by 2 for round trip
     uint16_t avstand = (pulse_width * SOUND_SPEED / 2);
     pulse_width = 0;
     return avstand;
